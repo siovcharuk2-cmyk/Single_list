@@ -17,6 +17,11 @@ int main()
 			"4. DeleteFromTail\n" <<
 			"5. DeleteAll\n" <<
 			"6. Show\n" <<
+			"7. Insert\n" <<
+			"8. DeleteAt\n" <<
+			"9. Find\n" <<
+			"10. FindAndChange\n" <<
+			"11. Reverse\n" <<
 			"0. Exit\n" <<
 			"> ";
 		std::cin >> user_choice;
@@ -54,6 +59,45 @@ int main()
 
 		case 6:
 			list.Show();
+			break;
+
+		case 7:
+			int value3,
+				index;
+			std::cout << "Enter value: ";
+			std::cin >> value3;
+			std::cout << "Enter index: ";
+			std::cin >> index;
+			list.Insert(value3, index);
+			break;
+
+		case 8:
+			int index2;
+			std::cout << "Enter index: ";
+			std::cin >> index2;
+			list.DeleteAt(index2);
+			break;
+
+		case 9:
+			int value4;
+			std::cout << "Enter value: ";
+			std::cin >> value4;
+			std::cout << "Index: " << list.Find(value4) << std::endl;
+			break;
+
+		case 10:
+			int value5,
+				value6;
+			std::cout << "Enter value: ";
+			std::cin >> value5;
+			std::cout << "Enter new value: ";
+			std::cin >> value6;
+			std::cout << "Count: " << list.FindAndChange(value5, value6) << std::endl;
+			break;
+
+		case 11:
+			list.Reverse();
+			std::cout << "Reversed\n";
 			break;
 
 		case 0:
