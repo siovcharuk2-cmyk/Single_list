@@ -17,6 +17,11 @@ public:
 		DeleteAll();
 	}
 
+	void setHead(Node<T>* newHead)
+	{
+		head = newHead;
+	}
+
 	void AddToHead(const T& value)
 	{
 		Node<T>* nodePtr = new Node<T>(value);
@@ -193,5 +198,73 @@ public:
 		}
 
 		head = prev;
+	}
+
+	Node<T>* clone() const
+	{
+		if (head == nullptr) return nullptr;
+
+		Node<T>* newHead = new Node<T>(head->value);
+		Node<T>* newCurrent = newHead;
+		Node<T>* oldCurrent = head->next;
+
+		while (oldCurrent != nullptr)
+		{
+			newCurrent->next = new Node<T>(oldCurrent->value);
+			newCurrent = newCurrent->next;
+			oldCurrent = oldCurrent->next;
+		}
+
+		return newHead;
+	}
+
+	Node<T>* operator+(const List<T>& other)
+	{
+		Node<T>* newHead = this->clone();
+		Node<T>* otherCloneHead = other.clone();
+
+		if (newHead == nullptr)
+			return otherCloneHead;
+
+		Node<T>* current = newHead;
+		while (current->next != nullptr)
+			current = current->next;
+
+		current->next = otherCloneHead;
+
+		return newHead;
+	}
+
+	Node<T>* operator*(const List<T>& other)
+	{
+		List<T>* newList = new List<T>;
+
+		for (Node<T>* firstPtr = head;
+			firstPtr != nullptr;
+			firstPtr = firstPtr->next)
+		{
+			if (newList->Find(firstPtr->value) != NULL)
+				continue;
+			
+			for (Node<T>* secondPtr = other.head;
+				secondPtr != nullptr;
+				secondPtr = secondPtr->next)
+			{
+				if (firstPtr->value == secondPtr->value)
+				{
+					newList->AddToHead(firstPtr->value);
+					break;
+				}
+			}
+		}
+
+		newList->Reverse();
+
+		Node<T>* resultHead = newList->head;
+		newList->head = nullptr;
+
+		delete newList;
+
+		return resultHead;
 	}
 };
