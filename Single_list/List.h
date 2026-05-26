@@ -22,14 +22,14 @@ public:
 		head = newHead;
 	}
 
-	void AddToHead(const T& value)
+	virtual void AddToHead(const T& value)
 	{
 		Node<T>* nodePtr = new Node<T>(value);
 		nodePtr->next = head;
 		head = nodePtr;
 	}
 
-	void DeleteFromHead()
+	virtual void DeleteFromHead()
 	{
 		if (head != nullptr)
 		{
@@ -39,7 +39,7 @@ public:
 		}
 	}
 
-	void AddToTail(const T& value)
+	virtual void AddToTail(const T& value)
 	{
 		if (head == nullptr) {
 			AddToHead(value);
@@ -83,7 +83,7 @@ public:
 		}
 	}
 
-	void Show() const
+	virtual void Show() const
 	{
 		for (Node<T>* nodePtr = head;
 			nodePtr != nullptr;

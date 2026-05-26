@@ -1,8 +1,15 @@
 #include <iostream>
+#include <windows.h>
 #include "List.h"
+#include "Stack.h"
+#include "Queue.h"
 
 int main()
 {
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
+
+
 	//List<int> list;
 
 	//while (true)
@@ -110,35 +117,76 @@ int main()
 	//}
 
 	
-	List<int> l1;
-	List<int> l2;
-	List<int> l3;
+	//List<int> l1;
+	//List<int> l2;
+	//List<int> l3;
 
-	l1.AddToHead(7);
-	l1.AddToHead(6);
-	l1.AddToHead(5);
-	l1.AddToHead(4);
+	//l1.AddToHead(7);
+	//l1.AddToHead(6);
+	//l1.AddToHead(5);
+	//l1.AddToHead(4);
 
-	l2.AddToHead(4);
-	l2.AddToHead(3);
-	l2.AddToHead(2);
-	l2.AddToHead(1);
+	//l2.AddToHead(4);
+	//l2.AddToHead(3);
+	//l2.AddToHead(2);
+	//l2.AddToHead(1);
 
-	l3.AddToHead(10);
+	//l3.AddToHead(10);
 
-	l1.Show();
-	l2.Show();
-	l3.Show();
+	//l1.Show();
+	//l2.Show();
+	//l3.Show();
 
-	std::cout << "====== 3.clone(1) =======\n";
-	l3.setHead(l1.clone());
-	l3.Show();
+	//std::cout << "====== 3.clone(1) =======\n";
+	//l3.setHead(l1.clone());
+	//l3.Show();
 
-	std::cout << "====== 1 = 3 + 2 =======\n";
-	l1.setHead(l3 + l2);
-	l1.Show();
+	//std::cout << "====== 1 = 3 + 2 =======\n";
+	//l1.setHead(l3 + l2);
+	//l1.Show();
 
-	std::cout << "====== 3 = 1 * 2 =======\n";
-	l3.setHead(l1* l2);
-	l3.Show();
+	//std::cout << "====== 3 = 1 * 2 =======\n";
+	//l3.setHead(l1* l2);
+	//l3.Show();
+
+
+
+	std::cout << "====== Stack ======\n";
+	List<int>* ListPtr;
+	ListPtr = new Stack<int>{};
+
+	std::cout << "Порожній стек: ";
+	ListPtr->Show();
+	
+	std::cout << "Додав 1, 4, 7, 9\n";
+	ListPtr->AddToHead(1);
+	ListPtr->AddToHead(4);
+	ListPtr->AddToHead(7);
+	ListPtr->AddToHead(9);
+	ListPtr->Show();
+
+	std::cout << "Видалив 2 елемента\n";
+	ListPtr->DeleteFromHead();
+	ListPtr->DeleteFromHead();
+	ListPtr->Show();
+	delete ListPtr;
+
+	std::cout << "\n\n====== Queue ======\n";
+	ListPtr = new Queue<int>{};
+
+	std::cout << "Порожня черга: ";
+	ListPtr->Show();
+
+	std::cout << "Додав 1, 4, 7, 9\n";
+	ListPtr->AddToTail(1);
+	ListPtr->AddToTail(4);
+	ListPtr->AddToTail(7);
+	ListPtr->AddToTail(9);
+	ListPtr->Show();
+
+	std::cout << "Видалив 2 елемента\n";
+	ListPtr->DeleteFromHead();
+	ListPtr->DeleteFromHead();
+	ListPtr->Show();
+	delete ListPtr;
 }
